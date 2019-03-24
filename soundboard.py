@@ -12,7 +12,7 @@ class MainWindow(Frame):
 		Frame.__init__(self,parent)
 		self.parent = parent
 		#self.pack()
-		self.convert_mp3_wav('mp3_files/')
+		self.convert_mp3_wav(resource_path('mp3_files/'))
 		self.dynam_buttons()
 
 	def dynam_buttons(self):
@@ -21,13 +21,13 @@ class MainWindow(Frame):
 		y = 0
 		x = 1
 		i = 0
-		for file in glob.glob(os.path.join("wav_files/", '*.wav')):
+		for file in glob.glob(os.path.join(resource_path("wav_files/"), '*.wav')):
 			#print (file)
 			#print(resource_path(file))
 			def get_sound(file):
 				return lambda: PlaySound(resource_path(file), SND_FILENAME | SND_ASYNC)
 			sound = get_sound(file)
-			m_buttons.append(Button(top, text = file[10:-4], command = sound).grid(row=i, column=x, sticky=W, pady=(10,10), padx=(10,10)))
+			m_buttons.append(Button(top, text = os.path.basename(resource_path(file))[:-4], command = sound).grid(row=i, column=x, sticky=W, pady=(10,10), padx=(10,10)))
 			if(x == 10):
 				i = i + 1
 				x = 0
@@ -39,7 +39,7 @@ class MainWindow(Frame):
 			them to wav files and send them to "wav_files" directory"""
 			name = str(filename)
 			mp3_audio = AudioSegment.from_file(name)
-			mp3_audio.export('wav_files/' + name[10:-4] + ".wav", format="wav")
+			mp3_audio.export(resource_path('wav_files/') + os.path.basename(resource_path(name))[:-4] + ".wav", format="wav")
 			
 def resource_path(relative_path):
 		""" Get absolute path to resource, works for dev and for PyInstaller """
