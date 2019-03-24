@@ -26,8 +26,8 @@ class MainWindow(Frame):
 			#print(resource_path(file))
 			def get_sound(file):
 				return lambda: PlaySound(resource_path(file), SND_FILENAME | SND_ASYNC)
-			sound = get_sound(file)
-			m_buttons.append(Button(top, text = os.path.basename(resource_path(file))[:-4], command = sound).grid(row=i, column=x, sticky=W, pady=(10,10), padx=(10,10)))
+			#sound = get_sound(file)
+			m_buttons.append(Button(top, text = os.path.basename(resource_path(file))[:-4], command = get_sound(file)).grid(row=i, column=x, sticky=W, pady=(10,10), padx=(10,10)))
 			if(x == 10):
 				i = i + 1
 				x = 0
