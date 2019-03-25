@@ -3,9 +3,10 @@ from tkinter import *
 import sys
 import os
 import glob
+from pydub import AudioSegment
 
 top = Tk()
-top.title('Mel Soundboard')
+top.title('JOJOO')
 class MainWindow(Frame):
 	
 	def __init__(self, parent=None):
